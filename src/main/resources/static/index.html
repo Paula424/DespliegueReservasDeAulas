@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Reservas de Aulas</title>
+</head>
+<body>
+<h1>Listado de aulas</h1>
+<div id="aulas"></div>
+
+<script>
+    async function cargarAulas() {
+      const res = await fetch('/aulas');
+      const aulas = await res.json();
+      const cont = document.getElementById('aulas');
+      cont.innerHTML = '<ul>' + aulas.map(a => `<li>${a.nombre} (capacidad: ${a.capacidad})</li>`).join('') + '</ul>';
+    }
+    cargarAulas();
+</script>
+</body>
+</html>
